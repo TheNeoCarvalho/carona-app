@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "carona",
     "name": "carona",
     "slug": "carona",
     "version": "1.0.0",
@@ -22,7 +23,11 @@
       }
     },
     "web": {
+      "bundler": "metro",
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
