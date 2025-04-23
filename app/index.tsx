@@ -18,7 +18,6 @@ const index = () => {
       <Text style={{ fontSize: 18, marginBottom: 32 }}>
         Ofereça carona e ganhe dinheiro
       </Text>
-
       <Link href="/auth/passager">
         <Image style={{ width: 150, height: 150 }} source={require('../assets/passager.png')} />
       </Link>
