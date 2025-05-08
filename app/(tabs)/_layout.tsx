@@ -6,12 +6,19 @@ export default function Layout() {
         <Tabs screenOptions={{
             tabBarStyle:{
                 backgroundColor: '#000',
+            },
+            headerStyle: {
+                backgroundColor: '#000',
             }
         }}>
             <Tabs.Screen
                 name="home"
                 options={{
                     title: '',
+                    headerTitle: 'Home',
+                    headerTitleStyle: {
+                        color: '#fff',
+                    },
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
                 }}
             />
