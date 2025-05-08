@@ -3,20 +3,36 @@ import { Tabs } from 'expo-router';
 
 export default function Layout() {
     return (
-        <Tabs>
+        <Tabs screenOptions={{
+            tabBarStyle:{
+                backgroundColor: '#000',
+            }
+        }}>
             <Tabs.Screen
                 name="home"
-               
+                options={{
+                    title: '',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+                }}
             />
+            
             <Tabs.Screen
-                name="settings"
-                
+                name="travels"
+                options={{
+                    title: '',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="map-o" color={color} />,
+                }}
             />
 
             <Tabs.Screen
-                name="travels"
-                
+                name="settings"
+                options={{
+                    title: '',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+                }}
             />
+
+            
         </Tabs>
     );
 }
