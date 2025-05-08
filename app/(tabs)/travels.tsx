@@ -4,7 +4,12 @@ import React from 'react'
 const Travels = () => {
     return (
         <View>
-            <View>
+            <View style={{
+                flexDirection: 'row',
+                backgroundColor: '#ccc',
+                margin: 10,
+                padding: 10,
+             }}>
                 <View>
                     <Text>De: Cedro</Text>
                     <Text>Para: Fortaleza</Text>
