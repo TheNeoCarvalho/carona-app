@@ -17,7 +17,7 @@ export default function Layout() {
                     title: '',
                     headerTitle: 'Home',
                     headerTitleStyle: {
-                        color: '#fff',
+                        color: '#fff'
                     },
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
                 }}
