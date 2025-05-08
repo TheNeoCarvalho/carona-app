@@ -27,6 +27,10 @@ export default function Layout() {
                 name="travels"
                 options={{
                     title: '',
+                    headerTitle: 'Minhas Caronas',
+                    headerTitleStyle: {
+                        color: '#fff'
+                    },
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="map-o" color={color} />,
                 }}
             />
@@ -35,6 +39,10 @@ export default function Layout() {
                 name="settings"
                 options={{
                     title: '',
+                    headerTitle: 'Meu Perfil',
+                    headerTitleStyle: {
+                        color: '#fff'
+                    },
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
                 }}
             />
