@@ -1,12 +1,75 @@
-import { View, Text, TextInput, ScrollView, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput, ScrollView, TouchableOpacity, Pressable, Alert } from 'react-native'
+import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import { useRouter } from 'expo-router'
+import api from '../../service/api'
 
 const Driver = () => {
 
   const router = useRouter()
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [tel, setTel] = useState("");
+  const [marca, setMarca] = useState("");
+  const [modelo, setModelo] = useState("");
+  const [ano, setAno] = useState("");
+  const [placa, setPlaca] = useState("");
+
+
+  const handleSaveUserDriver = async () => {
+    console.log('name', name)
+    console.log('email', email)
+    console.log('password', password)
+    console.log('tel', tel)
+    console.log('marca', marca)
+    console.log('modelo', modelo)
+    console.log('ano', ano)
+    console.log('placa', placa)
+
+
+    // const response = await api.post('register', {
+    //   name,
+    //   email,
+    //   password,
+    //   tel,
+    //   marca,
+    //   modelo,
+    //   ano,
+    //   placa
+    // })
+
+    // console.log(response)
+    
+    const response = await fetch('http://localhost:8000/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      
+      body: JSON.stringify({
+        name,
+        email,
+        type: 'driver',
+        tel,
+        password,
+        marca,
+        modelo,
+        ano,
+        placa
+      }),
+    })
+    const data = await response.json()
+    console.log(data)
+    if (response.ok) {
+      Alert.alert('Cadastro realizado com sucesso!')
+      router.push('/(tabs)/home')
+    } else {
+      Alert.alert('Erro ao cadastrar motorista:', data)
+    }
+  }
 
   return (
     <>
@@ -50,6 +113,8 @@ const Driver = () => {
           >Informações Pessoais</Text>
           <Text style={{ fontSize: 18 }}>Nome Completo</Text>
           <TextInput
+            onChangeText={() => setName(name)}
+            value={name}
             style={{
               backgroundColor: '#FDFDFD',
               borderWidth: 1,
@@ -60,35 +125,44 @@ const Driver = () => {
               padding: 8
             }} />
           <Text style={{ fontSize: 18 }}>Email</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setEmail(email)}
+            value={email}  
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
           <Text style={{ fontSize: 18 }}>Telefone/Whatsapp</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setTel(tel)}
+            value={tel}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
           <Text style={{ fontSize: 18 }}>Senha</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setPassword(password)}
+            value={password}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
         </View>
         <View
           style={{
@@ -103,45 +177,57 @@ const Driver = () => {
             }}
           >Informações do Veículo</Text>
           <Text style={{ fontSize: 18 }}>Marca</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setMarca(marca)}
+            value={marca}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
           <Text style={{ fontSize: 18 }}>Modelo</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setModelo(modelo)}
+            value={modelo}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
           <Text style={{ fontSize: 18 }}>Ano</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setAno(ano)}
+            value={ano}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
           <Text style={{ fontSize: 18 }}>Placa</Text>
-          <TextInput style={{
-            backgroundColor: '#FDFDFD',
-            borderWidth: 1,
-            borderColor: '#C0C0C0',
-            borderRadius: 8,
-            height: 42,
-            marginBottom: 16,
-            padding: 8
-          }} />
+          <TextInput 
+            onChangeText={() => setPlaca(placa)}
+            value={placa}
+            style={{
+              backgroundColor: '#FDFDFD',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 8,
+              height: 42,
+              marginBottom: 16,
+              padding: 8
+            }} />
         </View>
       </ScrollView>
       <View style={{
@@ -150,7 +236,10 @@ const Driver = () => {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <Pressable onPress={() => router.push('/(tabs)/home')}>
+        <Pressable 
+          // onPress={() => router.push('/(tabs)/home')}
+          onPress={handleSaveUserDriver}
+        >
           <Text
             style={{
               color: '#FFF',
